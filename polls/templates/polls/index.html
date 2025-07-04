@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+    <head>
+        <title>Bank of Incredible Security</title>
+    </head>
+
+
+    <body style="background-color: antiquewhite;">
+		<h2>Account details</h2>
+
+        <table> <!-- FLAW 3! This is a major security flaw since this code goes through all users accounts and their respective balances.-->
+            {% for account in accounts %}
+                <tr>
+		        <th style="text-align:left">User: <td style="font-family:courier;">{{account.user.username}} 
+		        <tr>
+		        <th style="text-align:left">Balance:  <td>{{account.balance}}
+            {% endfor %}
+        </table>
+        
+        <!-- PART OF FLAW 5! This displays the recovery password and is needed to show the difference of the actual fix and flaw. -->
+        <p style="color: red;">Recovery password: {{ insecurely_stored_password }}</p>
+
+
+        <!-- This is the fix for flaw 3. This fix only shows the logged in users account information. Other part of the fix is in views.py in homeView.
+
+        <table>
+		<tr>
+		<th style="text-align:left">User: <td>{{user.username}} 
+		<tr>
+		<th style="text-align:left">Balance:  <td>{{user.account.balance}}
+		</table>
+        <br>
+
+        -->
+        
+
+        <form action="{% url 'logout' %}"  method="POST">
+            {% csrf_token %}  <!-- I have to leave this token in if I want users to be able to log out without error-->
+            <button type="submit">Logout</button>
+        </form>
+
+
+        <hr class="solid">
+		
+
+        <h2>Payment transaction</h2>
+
+        <form id='transfer' action='transfer/' method="POST">
+            <!-- Add {% csrf_token %} here --> 
+
+            <span><td></td>Receiver:</span><br/>
+            <select name="to">
+			{% for account in accounts %}
+                <option value="{{account.user.username}}">{{account.user.username}}</option>
+			{% endfor %}
+            </select><br/>
+            <br>
+
+            <span>Payment:</span><br/>
+            <input type="number" name="amount"/><br/>
+
+            <input type="submit" value="Transfer"/>
+        </form>
+    </body>
+
+
+
+</html>

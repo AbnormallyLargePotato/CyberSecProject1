@@ -1,0 +1,16 @@
+<body style="background-color: antiquewhite;"></body>
+
+<h1> <i> <u> Bank of Incredible Security </i> </u> </h1>
+<p style="color: white"> Totally legit and safe </p>
+<h2>Login</h2>
+
+<!-- FLAW 4! At its core this login, which is djangos own simplest version, is not secure. 
+ One issue is that you can brute force the login because it does not have a lock out feature after failed attempts to log in.
+ -->
+<form method="POST">
+  {% csrf_token %} <!-- Have to leave this token here for users to be able to log in without error-->
+  {{ form.as_p }}
+  <button type="submit">Login</button>
+</form>
+
+</body>
