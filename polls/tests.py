@@ -5,7 +5,7 @@ from django.test import TestCase
 
 #reminder passwords
 #jarmo: verysecure
-#maija: insecure            recovery: giveit
+#maija: insecure
 #matti: notsecure           recovery: back
 
 
