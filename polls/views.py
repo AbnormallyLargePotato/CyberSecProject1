@@ -27,7 +27,7 @@ def transferView(request):
 		
 		#FLAW 2! Allowing transfer of negative amounts leaving other accounts vulnerable. Very simple fix the two rows below.
 		#if amount <= 0:
-			#return redirect('/')
+		#	return redirect('/')
 		
 
 		sender = Account.objects.get(user = request.user) 
