@@ -10,7 +10,8 @@
     <body style="background-color: antiquewhite;">
 		<h2>Account details</h2>
 
-        <table> <!-- FLAW 3! This is a major security flaw since this code goes through all users accounts and their respective balances.-->
+        <table> <!-- FLAW 3! This is a major security flaw since this code goes through all users accounts and their respective balances. This table has to be removed as
+			part of the fix for flaw 3. -->
             {% for account in accounts %}
                 <tr>
 		        <th style="text-align:left">User: <td style="font-family:courier;">{{account.user.username}} 
@@ -64,6 +65,7 @@
             <input type="submit" value="Transfer"/>
         </form>
     </body>
+
 
 
 
